@@ -21,6 +21,10 @@
 			return new RegExp(pattern);
 		},
 		addRoute = function(route, callback) {
+			if(typeof route === 'function'){
+				callback = route;
+				route = 'default';
+			}
 			routes[route] = callback;
 		},
 		run = function(route) {
@@ -30,10 +34,12 @@
 					args = route.match(makeRegex(i));
 					if (args) {
 						routes[i].apply({}, args.slice(1));
-						break;
+						routes = {};
+						return;
 					}
 				}
 			}
+			routes['default'] && routes['default']();
 			routes = {};
 		};
 
