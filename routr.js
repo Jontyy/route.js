@@ -14,9 +14,12 @@
 			var pattern = route;
 			//turn (/:arg) into \/?:arg?
 			pattern = pattern.replace(/\(\/(:\w+)\)/g, '\\/?$1?');
+			//turn :int into (\d+)
+			pattern = pattern.split(':int').join('(\\d+)');
+			//turn :az into ([a-zA-Z]+)
+			pattern = pattern.split(':az').join('([a-zA-Z]+)');
 			//turn :arg into (\w+)
 			pattern = pattern.replace(/:\w+/g, '(\\w+)');
-
 			return new RegExp(pattern);
 		},
 		addRoute = function(route, callback) {

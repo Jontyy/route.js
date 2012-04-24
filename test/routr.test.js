@@ -51,4 +51,33 @@
 		ok(spy.calledTwice,'Expected the callback to have been called if optional arg is missing');
 
 	});
+
+	test('It should have int argument type',3,function(){
+		var spy = this.spy();
+
+		route('/user/:int',spy);
+		route('/user/jontyy');
+
+		
+		route('/user/:int',spy);
+		route('/user/2');
+
+		ok(spy.callCount === 1,'Should only have been called once');
+		ok(spy.neverCalledWith('jontyy'),'Should never have been called with a string');
+		ok(spy.calledWith('2'),'Should have been called with 2');
+	});
+
+	test('It should have az argument type',3, function(){
+		var spy = this.spy();
+
+		route('/user/:az',spy);
+		route('/user/jontyy');
+		
+		route('/user/:az',spy);
+		route('/user/2');
+
+		ok(spy.callCount === 1,'Should only have been called once');
+		ok(spy.neverCalledWith('2'),'Should never have been called with anything other than a-z');
+		ok(spy.calledWith('jontyy'),'Should have been called with jontyy');
+	});
 }());
