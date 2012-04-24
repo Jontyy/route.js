@@ -8,11 +8,11 @@
 	run = function(route){
 		var i,reg, args;
 		for(i in routes){if(routes.hasOwnProperty(i)){
-			console.log('Route::',i);
-			reg = new RegExp(i);
+			reg = i.replace(/:\w+/g,'(\\w+)');
+			reg = new RegExp(reg);
 			args = route.match(reg);
 			if(args){
-				routes[i].apply({}, args);
+				routes[i].apply({}, args.slice(1));
 				break;
 			}
 		}}

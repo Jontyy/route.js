@@ -1,9 +1,5 @@
 (function(){
 
-	module('routr.js',{
-
-	});
-
 	test('It should be a globally available function',1,function(){
 		ok(typeof route === 'function','It should be a globally available function');
 	});
@@ -34,4 +30,11 @@
 		ok(spy.callCount === 0,'Expected the user route to have not been called.');
 	});
 
+	test('It should allow arguments with the :arg syntax',2,function(){
+		var spy = this.spy();
+		route('/user/:user/message/:message',spy);
+		route('/user/jontyy/message/15');
+		ok(spy.calledOnce,'Expected the route to have been called once');
+		ok(spy.calledWith('jontyy','15'),'Expected the arguments to have been passed')
+	});
 }());
