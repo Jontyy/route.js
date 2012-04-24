@@ -35,7 +35,8 @@ config.init({
 			regexp:true,
 			trailing : true,
 			node : true,
-			devel:true
+			devel:true,
+			smarttabs : true
 		}
 	}
 });

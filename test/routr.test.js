@@ -37,4 +37,18 @@
 		ok(spy.calledOnce,'Expected the route to have been called once');
 		ok(spy.calledWith('jontyy','15'),'Expected the arguments to have been passed')
 	});
+
+	test('It should allow optional arguments with the (/:arg) syntax',2,function(){
+		var spy = this.spy();
+
+		route('/user/:user/messages(/:filter)',spy);
+		route('/user/jontyy/messages/unread');
+
+		ok(spy.calledWith('jontyy','unread'),'Expected the optional arguments to have been passed');
+
+		route('user/:user/messages(/:filter)',spy);
+		route('/user/jontyy/messages');
+		ok(spy.calledTwice,'Expected the callback to have been called if optional arg is missing');
+
+	});
 }());
