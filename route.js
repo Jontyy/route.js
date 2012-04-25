@@ -1,4 +1,4 @@
-/*routr.js - @jontyy - MIT licensed - https://github.com/Jontyy/routr.js*/
+/*route.js - MIT licensed - https://github.com/Jontyy/route.js*/
 
 (function(exports) {
 	"use strict";

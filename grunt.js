@@ -1,15 +1,15 @@
 config.init({
 	meta: {
-		banner: '/*routr.js - @jontyy - MIT licensed - https://github.com/Jontyy/routr.js*/'
+		banner: '/*route.js - MIT licensed - https://github.com/Jontyy/route.js*/'
 	},
 	lint: {
 		files: ['src/*.js']
 	},
 	concat: {
-		'routr.js': ['<banner>','src/*.js'],
+		'route.js': ['<banner>','src/*.js'],
 	},
 	min: {
-		'routr.min.js': ['<banner>', 'routr.js']
+		'route.min.js': ['<banner>', 'route.js']
 	},
 	qunit : {
 		all : ['test/*.html']
