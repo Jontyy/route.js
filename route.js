@@ -19,7 +19,7 @@
 			//turn :az into ([a-zA-Z]+)
 			pattern = pattern.split(':az').join('([a-zA-Z]+)');
 			//turn :arg into (\w+)
-			pattern = pattern.replace(/:\w+/g, '(\\w+)');
+			pattern = pattern.replace(/:\w+/g, '(.+)');
 			return new RegExp(pattern);
 		},
 		addRoute = function(route, callback) {
