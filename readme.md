@@ -22,6 +22,9 @@ route('/product/:int',function(id){});
 //a-z argument
 route('/user/:az',function(username){});
 
+//alphanumeric type
+route('/user/:alnum',function(username){});
+
 route(function(){
    // the default route if nothing else matched
 });
