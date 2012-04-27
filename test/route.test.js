@@ -52,6 +52,18 @@
 
 	});
 
+	test('It should have a default route',1,function(){
+		var spy = this.spy();
+
+		route('/user/blah',function(){});
+		route('/blah/blah',function(){});
+		route(spy);
+
+		route('/this/should/fall/back/to/default');
+		ok(spy.calledOnce,'Default should be called if available and no routes matched');
+	});
+
+
 	test('It should have int argument type',3,function(){
 		var spy = this.spy();
 
@@ -81,14 +93,17 @@
 		ok(spy.calledWith('jontyy'),'Should have been called with jontyy');
 	});
 
-	test('It should have a default route',1,function(){
+	test('It should have an alnum argument type',3,function(){
 		var spy = this.spy();
 
-		route('/user/blah',function(){});
-		route('/blah/blah',function(){});
-		route(spy);
+		route('/user/:alnum',spy);
+		route('/user/-123-');
 
-		route('/this/should/fall/back/to/default');
-		ok(spy.calledOnce,'Default should be called if available and no routes matched');
+		route('/user/:alnum',spy);
+		route('/user/jontyy123');
+
+		ok(spy.calledOnce,'Should only have been called once');
+		ok(spy.neverCalledWith('-123-'),'Should never have been called with anything other than alpha numeric characters.');
+		ok(spy.calledWith('jontyy123'),'Should have been called with jontyy123');
 	});
 }());
