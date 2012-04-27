@@ -16,6 +16,8 @@
 			pattern = pattern.split(':int').join('(\\d+)');
 			//turn :az into ([a-zA-Z]+)
 			pattern = pattern.split(':az').join('([a-zA-Z]+)');
+			//turn :alnum into ([a-zA-Z0-9]+)
+			pattern = pattern.split(':alnum').join('([a-zA-Z0-9]+)');
 			//turn :arg into (\w+)
 			pattern = pattern.replace(/:\w+/g, '(.+)');
 			return new RegExp(pattern);
